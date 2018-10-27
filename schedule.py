@@ -11,10 +11,13 @@ logging.basicConfig(level=logging.DEBUG)
 
 async def extract(*args):
     print('extract...', args)
-    for i in range(10000):
+    for i in range(1000):
+        if i == 666:
+            raise Exception('evil')
         yield i
 
 async def transform(x):
+    await asyncio.sleep(0.1)
     print('transform...', x)
 
 def sync_transform(x):
